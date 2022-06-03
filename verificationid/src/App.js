@@ -18,6 +18,9 @@ function App() {
   let [mailadd1, setmailadd1] = useState('');
   let [mailadd2, setmailadd2] = useState('');
   let [socialsec, setsocialsec] = useState('');
+  let [date, setDate] = useState('');
+  let [state, setState] = useState('');
+
   let verifyArry = [];
   let submitForm = {};
 
@@ -40,8 +43,15 @@ function App() {
     {
     setmailadd2(inValue);
     }
-    if(compName === 'socialsec'){
+    else if(compName === 'socialsec'){
     setsocialsec(inValue);
+    }
+    else if(compName === 'date')
+    {
+    setDate(inValue);
+    }
+    else if(compName === 'state'){
+    setState(inValue);
     }
   }
 
@@ -53,6 +63,8 @@ function App() {
     localStorage.setItem('mailadd1', mailadd1);
     localStorage.setItem('mailadd2', mailadd2);
     localStorage.setItem('socialsec', socialsec);
+    localStorage.setItem('date', date);
+    localStorage.setItem('state', state);
     submitForm = {
       city: city1,
       country: country1
@@ -62,13 +74,25 @@ function App() {
     currenAry = JSON.parse(localStorage.getItem("verifyArry") || "[]");
     console.log(currenAry);
     let updatedAry = [...currenAry, submitForm];
-    console.log(updatedAry);
+    // console.log(updatedAry);
     localStorage.setItem('verifyArry',JSON.stringify(updatedAry));
   }
+
   function getValidityData(){
     const validData = JSON.parse(localStorage.getItem("verifyArry"));
-    const listItems = validData.map((d) => <li key={d.city}>{d.city}</li>);
-    console.log(listItems);
+    const listItems = validData.map((d) =>{
+    <ul key={d.id}>
+      <li>{d.mailaddr1}</li>
+      <li>{d.mailaddr2}</li>
+      <li>{d.city}</li>
+      <li>{d.state}</li>
+      <li>{d.zipcode1}</li>
+      <li>{d.country1}</li>
+      <li>{d.date}</li>
+      <li>{d.socialsec}</li>
+    </ul>
+  });
+    // console.log(listItems);
     return (
       <div>
         {listItems}
@@ -86,12 +110,12 @@ function App() {
             </div>
             <div className="row">
               < City cityset={formValues} />
-              < State />
+              < State stateset={formValues}/>
               < Zipcode setZipcode={formValues} />
               < Country countryset={formValues} />
             </div>
             <div className="row">
-              < Date />
+              < Date dateset={formValues}/>
               < Socialsecurity socialset={formValues} />
               < Identificationupload />
             </div>
@@ -104,6 +128,7 @@ function App() {
               </div>
             </div>
           </form>
+          <getValidityData />
         </div>
       </div>
     </div>

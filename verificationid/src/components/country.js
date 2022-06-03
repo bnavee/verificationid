@@ -8,8 +8,9 @@ function Country({ countryset }) {
         setCountry1(e.target.value);
         countryset(`country`, e.target.value);
     }
+
     return (
-        <div className='col'>
+        <div className='col' onSelect={(e)=>localCity(e)}>
             <label>Country
                 <select className="form-control">
                     <option>India</option>

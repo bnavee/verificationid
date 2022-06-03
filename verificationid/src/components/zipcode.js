@@ -12,8 +12,6 @@ function Zipcode({ setZipcode }) {
         setZipchange(e.target.value);
         setZipcode(`zipcode`, e.target.value);
     }
-
-
     return (
         <div className='col' onChange={(e) => localZip(e)}>
             <label>ZipCode
