@@ -80,8 +80,8 @@ function App() {
 
   function getValidityData(){
     const validData = JSON.parse(localStorage.getItem("verifyArry"));
-    const listItems = validData.map((d) =>{
-    <ul key={d.id}>
+    const listItems = validData.map((d,id) =>{
+    <ul key={id}>
       <li>{d.mailaddr1}</li>
       <li>{d.mailaddr2}</li>
       <li>{d.city}</li>
